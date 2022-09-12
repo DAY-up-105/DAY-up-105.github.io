@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="hailey的个人博客">
 <meta property="og:description" content="第3章 进程描述和控制 操作系统的多数需求都涉及进程： 与普通计算机软件作用相同，是由处理器执行的一段程序或一组程序 必须交替执行多个进程，在合理的响应时间范围内使处理器的利用率最大 必须按照特定的策略给进程分配资源，同时避免死锁 为有助于构建应用的进程间通信和用户进程创建提供支持    3.1 什么是进程3.1.1 背景 操作系统需要达到的目标： 资源对多个应用程序可用 处理器在多个程序间切换，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/.com//image-20220910100055215.png">
-<meta property="og:image" content="http://example.com/.com//image-20220910100118292.png">
-<meta property="og:image" content="http://example.com/.com//image-20220910100136847.png">
-<meta property="og:image" content="http://example.com/.com//image-20220910100148367.png">
+<meta property="og:image" content="http://example.com/img/image-20220910100055215.png">
+<meta property="og:image" content="http://example.com/img/image-20220910100118292.png">
+<meta property="og:image" content="http://example.com/img/image-20220910100136847.png">
+<meta property="og:image" content="http://example.com/img/image-20220910100148367.png">
 <meta property="article:published_time" content="2022-09-09T12:24:44.000Z">
-<meta property="article:modified_time" content="2022-09-12T01:35:25.750Z">
+<meta property="article:modified_time" content="2022-09-12T01:50:52.013Z">
 <meta property="article:author" content="hailey">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/.com//image-20220910100055215.png">
+<meta name="twitter:image" content="http://example.com/img/image-20220910100055215.png">
   
   
   
@@ -503,9 +503,9 @@
 <li>分派器（scheduler）：使处理器切换进程</li>
 </ul>
 <h4 id="3-2-1-两状态进程模型"><a href="#3-2-1-两状态进程模型" class="headerlink" title="3.2.1 两状态进程模型"></a>3.2.1 两状态进程模型</h4><ul>
-<li><img src="/.com//image-20220910100055215.png" srcset="/img/loading.gif" lazyload alt="image-20220910100055215"></li>
+<li><img src="/img/image-20220910100055215.png" srcset="/img/loading.gif" lazyload></li>
 <li>进程被分为运行态和非运行态</li>
-<li><img src="/.com//image-20220910100118292.png" srcset="/img/loading.gif" lazyload alt="image-20220910100118292"></li>
+<li><img src="/img/image-20220910100118292.png" srcset="/img/loading.gif" lazyload></li>
 <li>用排队图描述分派器的行为：当一个处于运行态的进程终止后，我们就要选一个处于非运行态的进程进入运行态</li>
 </ul>
 <h4 id="3-2-2-进程的创建和终止"><a href="#3-2-2-进程的创建和终止" class="headerlink" title="3.2.2 进程的创建和终止"></a>3.2.2 进程的创建和终止</h4><ul>
@@ -551,7 +551,7 @@
 </li>
 <li><p>办法：将非运行态分成两个状态：<strong>就绪态（ready）</strong>和<strong>阻塞态（blocked）</strong></p>
 </li>
-<li><p><img src="/.com//image-20220910100136847.png" srcset="/img/loading.gif" lazyload alt="image-20220910100136847"></p>
+<li><p><img src="/img/image-20220910100136847.png" srcset="/img/loading.gif" lazyload></p>
 <table>
 <thead>
 <tr>
@@ -587,7 +587,7 @@
 </li>
 <li><p><strong>挂起态（suspend）</strong>：内存中所有进程都处于阻塞态时，操作系统可把其中的一个进程置为挂起态，并把它转移到磁盘，此时内存所释放的空间就可被调入的另一个进程使用</p>
 </li>
-<li><p><img src="/.com//image-20220910100148367.png" srcset="/img/loading.gif" lazyload alt="image-20220910100148367"></p>
+<li><p><img src="/img/image-20220910100148367.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>就绪态：进程已在内存中并可以执行</li>
 <li>阻塞态：进程已在内存中并等待一个事件</li>
