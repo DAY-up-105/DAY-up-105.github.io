@@ -1,0 +1,1301 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/61.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hailey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1 引言 语音伪造技术的恶意攻击对象分为人类听觉系统（Human Audio System，HAS）和机器听觉系统两大类 针对说话人验证系统（Automatic Speaker Verification，ASV）的恶意攻击，将非法获取目标用户的访问权限  2 语音伪造技术 语音伪造的目的是生成目标说话人的声音，以欺骗人类听觉系统（HAS）或自动说话人验证系统（ASV） 目前的语音伪造技术主要包括：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语音伪造及检测技术研究综述">
+<meta property="og:url" content="http://example.com/2022/10/10/%E8%AF%AD%E9%9F%B3%E4%BC%AA%E9%80%A0%E5%8F%8A%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="hailey的个人博客">
+<meta property="og:description" content="1 引言 语音伪造技术的恶意攻击对象分为人类听觉系统（Human Audio System，HAS）和机器听觉系统两大类 针对说话人验证系统（Automatic Speaker Verification，ASV）的恶意攻击，将非法获取目标用户的访问权限  2 语音伪造技术 语音伪造的目的是生成目标说话人的声音，以欺骗人类听觉系统（HAS）或自动说话人验证系统（ASV） 目前的语音伪造技术主要包括：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/1.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/2.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/3.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/4.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/5.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/6.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/7.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/8.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/9.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/10.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/11.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/12.png">
+<meta property="og:image" content="http://example.com/img/语音伪造及检测技术研究综述/13.png">
+<meta property="article:published_time" content="2022-10-10T01:42:45.000Z">
+<meta property="article:modified_time" content="2022-10-19T09:23:57.689Z">
+<meta property="article:author" content="hailey">
+<meta property="article:tag" content="音频安全">
+<meta property="article:tag" content="文献笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/语音伪造及检测技术研究综述/1.png">
+  
+  
+  
+  <title>语音伪造及检测技术研究综述 - hailey的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"awvsokKeWRP4vII7diiB8b9q-gzGzoHsz","app_key":"DWqQoxxdtYMtEsfxzZwd5CPv","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>笔记仓库</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="语音伪造及检测技术研究综述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-10 09:42" pubdate>
+          2022年10月10日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="文献笔记"
+        id="heading-67c5d2566ba8b10808a3c96ead7b5dea" role="tab" data-toggle="collapse" href="#collapse-67c5d2566ba8b10808a3c96ead7b5dea"
+        aria-expanded="true"
+      >
+        文献笔记
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-67c5d2566ba8b10808a3c96ead7b5dea"
+           role="tabpanel" aria-labelledby="heading-67c5d2566ba8b10808a3c96ead7b5dea">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="音频安全"
+        id="heading-c323202db439aaef1e3bc9669c7af33e" role="tab" data-toggle="collapse" href="#collapse-c323202db439aaef1e3bc9669c7af33e"
+        aria-expanded="true"
+      >
+        音频安全
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-c323202db439aaef1e3bc9669c7af33e"
+           role="tabpanel" aria-labelledby="heading-c323202db439aaef1e3bc9669c7af33e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/10/10/%E8%AF%AD%E9%9F%B3%E4%BC%AA%E9%80%A0%E5%8F%8A%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E7%BB%BC%E8%BF%B0/" title="语音伪造及检测技术研究综述"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">语音伪造及检测技术研究综述</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="音频安全"
+        id="heading-c323202db439aaef1e3bc9669c7af33e" role="tab" data-toggle="collapse" href="#collapse-c323202db439aaef1e3bc9669c7af33e"
+        aria-expanded="true"
+      >
+        音频安全
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-c323202db439aaef1e3bc9669c7af33e"
+           role="tabpanel" aria-labelledby="heading-c323202db439aaef1e3bc9669c7af33e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/10/10/%E8%AF%AD%E9%9F%B3%E4%BC%AA%E9%80%A0%E5%8F%8A%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6%E7%BB%BC%E8%BF%B0/" title="语音伪造及检测技术研究综述"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">语音伪造及检测技术研究综述</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">语音伪造及检测技术研究综述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h3><ul>
+<li>语音伪造技术的恶意攻击对象分为<strong>人类听觉系统（Human Audio System，HAS）</strong>和机器听觉系统两大类</li>
+<li>针对<strong>说话人验证系统（Automatic Speaker Verification，ASV）</strong>的恶意攻击，将非法获取目标用户的访问权限</li>
+</ul>
+<h3 id="2-语音伪造技术"><a href="#2-语音伪造技术" class="headerlink" title="2 语音伪造技术"></a>2 语音伪造技术</h3><ul>
+<li>语音伪造的目的是生成目标说话人的声音，以欺骗人类听觉系统（HAS）或自动说话人验证系统（ASV）</li>
+<li>目前的语音伪造技术主要包括：<ul>
+<li><strong>语音模仿（Impersonation）</strong>：通过人类模拟产生目标说话人风格的语音，属于非自动化的语音伪造手段</li>
+<li><strong>语音合成（Text to Speech，TTS）</strong>：根据给定的语言内容合成目标说话人风格的语音，实现文本到声音的映射</li>
+<li><strong>语音转换（Voice Conversion，VC）</strong>：将源说话人的语音转换为目标说话人风格的语音，实现声音到声音的映射</li>
+<li><strong>重放攻击（Replay Attack，RA）</strong>：对目标说话人的语音通过设备录制后进行编辑和回放以产生高度逼真的目标说话人语音（常用于攻击ASV系统）</li>
+<li><strong>对抗攻击（Adversarial Attack）</strong>：通过对抗样本技术，在语音信号上添加微量扰动实现对ASV系统的攻击</li>
+</ul>
+</li>
+<li><img src="/img/语音伪造及检测技术研究综述/1.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<h4 id="2-1-语音合成"><a href="#2-1-语音合成" class="headerlink" title="2.1 语音合成"></a>2.1 语音合成</h4><ul>
+<li><p>典型的语音合成系统如图2所示</p>
+<p><img src="/img/语音伪造及检测技术研究综述/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>包括：</p>
+<ul>
+<li><strong>前端文本分析</strong>：将输入文本通过规范化、分词、词性标注等步骤生成对应的音素序列、时长预测等信息</li>
+<li><strong>后端语音波形生成</strong>：根据文本分析生成的语言规范合成目标说话人的语音波形</li>
+</ul>
+</li>
+<li><p>传统语音合成主要包括<strong>波形拼接法</strong>和<strong>参数生成法</strong></p>
+<ol>
+<li>波形拼接法<ul>
+<li>将自然语音数据中的语音单元按照一定的规则拼接，合成与目标说话人高度相似且自然的语音，包括语料库收集、声学单元选取、拼接伪造等步骤</li>
+<li>代表性工作：基音同步叠加的PSOLA技术、利用隐马尔可夫模型（Hidden Markov Model，HMM）限制目标单元韵律参数的单元选择系统</li>
+<li>适用于某些特定领域（天气预报、报时等）</li>
+<li>使用真实语音片段，最大限度保留语音音质，但是需要大量目标说话人语料，对于不同领域的文本合成稳定性不强，容易被人或机器识别</li>
+</ul>
+</li>
+<li>参数生成法<ul>
+<li>通过声学模型预测声学参数，将声学参数通过声码器合成目标说话人语音</li>
+<li>代表性工作：基于HMM的统计参数合成方法、基于DNN的参数合成方法</li>
+<li>输出语音稳定流畅，但受限于参数合成器的缺陷以及统计建模的损失</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>采用深度学习方法的技术主要包括<strong>管道式（Pipeline）语音合成</strong>和<strong>端到端式语音合成</strong>两类</p>
+<ol>
+<li>管道式语音合成<ul>
+<li>三个模块<ul>
+<li>文本分析：根据输入文本进行韵律预测和每个音素的时长预测</li>
+<li>声学模型：建立文本特征和声学特征之间的联系，根据文本分析的输出经由DNN映射到声学特征</li>
+<li>声码器：实现声学参数到语音波形的转换</li>
+</ul>
+</li>
+<li>限制：多个模块之间会产生误差积累，需要高昂成本的文本标注以及文本特征和声学特征的强制对齐</li>
+</ul>
+</li>
+<li>端到端式语音合成<ul>
+<li>实现了直接输入文本或注音字符，输出音频波形</li>
+<li>自回归语音合成<ul>
+<li>基于序列到序列的生成模型，语音合成效果优，但速度较慢</li>
+<li>2016Google提出的WaveNet语音合成算法<ul>
+<li>通过扩张因果卷积网络根据当前时刻采样点生成下一采样点</li>
+<li>直接对原始语音数据进行建模，避免了声码器对语音进行参数化时导致的音质损失</li>
+<li>无法实现输入文本或标注音符到输出语音的直接转换</li>
+</ul>
+</li>
+<li>2017年第一个端到端语音合成系统Tacotron<ul>
+<li>引入了注意力机制，输入文本或注音字符，输出线性语谱图，再通过Griffin-Lim算法生成语音波形</li>
+<li>所有特征模型可学习调优，便于添加语种、音色、情感等限制条件</li>
+<li>但模型复杂，纠错能力和人为干预能力差，音质不如WaveNet</li>
+</ul>
+</li>
+<li>2018年Tacotron2简化了前端模型结构<ul>
+<li>基于文本输入生成梅尔语谱图</li>
+<li>通过改进的WaveNet声码器合成语音波形</li>
+</ul>
+</li>
+<li>2021年提出Wave-Tacotron端到端语音合成系统<ul>
+<li>通过在自回归解码器中添加规范化流来扩展Tacotron系统</li>
+<li>不生成中间特征，无需声码器实现文本到波形的端到端语音合成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非自回归语音合成<ul>
+<li>基于全并行网络结构，通过一次前馈计算生成整句语音，极大提升速度，可控性强且语音合成质量接近自回归模型效果</li>
+<li>2019年——基于源滤波的实时参数语音合成模型<ul>
+<li>基于频谱距离和相位距离的训练准则</li>
+<li>对给定的输入声学特征，通过源模块、基音F0和谐波加噪模型生成正弦激励信号</li>
+<li>然后通过级联扩张卷积和长短期记忆网络（LSTM）将激励信号和频谱特征转换成语音波形</li>
+</ul>
+</li>
+<li>2019年——基于Transformer的语音合成系统FastSpeech<ul>
+<li>从基于编码器-解码器的教室模型中提取注意力对齐来预测音素持续时间</li>
+<li>通过长度调节扩展源音素序列以匹配目标音素序列的长度，并生成梅尔谱图</li>
+<li>语音质量与自回归模型相当，极大提升了语音生成速度</li>
+</ul>
+</li>
+<li>2020年——FastSpeech2<ul>
+<li>解决了FastSpeech中师生蒸馏复杂且耗时的问题</li>
+<li>引入更多语音变化信息，进一步提升语音音质和生成速度</li>
+</ul>
+</li>
+<li>2021年——Parallel Tacotron<ul>
+<li>基于变分自编码器（VAE）的残差编码器扩展了Tacotron系统</li>
+</ul>
+</li>
+<li>2021年——基于FastSpeech的全并行语音合成系统FastPitch<ul>
+<li>在语音生成过程中改变基音轮廓预测以匹配话语语义</li>
+</ul>
+</li>
+<li>2021年——可快速生成高质量语音的多频带MelGAN模型<ul>
+<li>将频谱图作为生成器的输入，输出子带表示，将其合并成全波段信号表示后输入鉴别器</li>
+<li>同时使用多分辨率STFT损失替换原始的特征匹配损失</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-伪造语音检测技术"><a href="#3-伪造语音检测技术" class="headerlink" title="3 伪造语音检测技术"></a>3 伪造语音检测技术</h3><h4 id="3-1-伪造语音检测系统通用结构"><a href="#3-1-伪造语音检测系统通用结构" class="headerlink" title="3.1 伪造语音检测系统通用结构"></a>3.1 伪造语音检测系统通用结构</h4><ul>
+<li>典型的伪造语音检测系统一般由前后端两部分组成<ul>
+<li>前端：分析语音信号<strong>提取具有区分性的特征</strong></li>
+<li>后端：<strong>分类判断</strong>语音是真实语音还是伪造语音</li>
+</ul>
+</li>
+<li>基于深度学习的系统前端提取输入神经网络的语音特征，后端通过神经网络学习特征的高级表示，进行分类判决</li>
+<li><img src="/img/语音伪造及检测技术研究综述/3.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<h4 id="3-2-攻击场景和评价指标"><a href="#3-2-攻击场景和评价指标" class="headerlink" title="3.2 攻击场景和评价指标"></a>3.2 攻击场景和评价指标</h4><h5 id="3-2-1-攻击场景"><a href="#3-2-1-攻击场景" class="headerlink" title="3.2.1 攻击场景"></a>3.2.1 攻击场景</h5><ul>
+<li><p>身份认证应用中常用的ASV系统结构及其主要可能存在的攻击节点：</p>
+<p><img src="/img/语音伪造及检测技术研究综述/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>节点1和2为直接攻击节点，发生在语音声纹特征提取之前</li>
+<li>节点3-8为间接攻击节点，攻击者可以介入ASV内部处理流程中的各个操作环节</li>
+</ul>
+</li>
+<li><p>根据伪造语音输入目标ASV系统的途径，可将伪造语音攻击分为<strong>物理访问（Physical Access，PA）攻击</strong>和<strong>逻辑访问（Logical Access，LA）攻击</strong></p>
+<ul>
+<li>PA中语音样本以空气传播的方式通过麦克风捕获后输入目标ASV系统</li>
+<li>LA中语音样本直接输入目标ASV系统</li>
+<li>伪造语音检测常用数据集可分为LA和PA两类<ul>
+<li>LA场景的伪造语音类型包括转换语音、合成语音等</li>
+<li>PA场景的伪造语音包括重放语音</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-2-2-评价指标"><a href="#3-2-2-评价指标" class="headerlink" title="3.2.2 评价指标"></a>3.2.2 评价指标</h5><ul>
+<li><p>伪造语音检测算法的常用性能指标包括<strong>等错误率（Equal Error Rate，EER）</strong>和<strong>串联检测代价函数（tandem Detection Cost Function，t-DCF）</strong></p>
+<ol>
+<li><p>等错误率（EER）</p>
+<ul>
+<li><p>等错误率（EER）是<strong>错误接受率（False Accept Rate，FAR）</strong>和<strong>错误拒绝率（Fasle Rejection Rate，FRR）</strong>相等时的错误率</p>
+<ul>
+<li>错误接受：将伪造语音错误分类成真实语音</li>
+<li>错误拒绝：将真实语音错误分类为伪造语音</li>
+</ul>
+</li>
+<li><p>给定检测系统的检测分数和阈值θ，错误接受率和错误拒绝率可分别按式（1）和式（2）计算：</p>
+<script type="math/tex; mode=display">
+P_{fa}(θ)=\frac{得分>阈值θ的伪造语音个数}{伪造语音总数}\quad(1)
+\\
+P_{miss}(θ)=\frac{得分≤阈值θ的真实语音个数}{真实语音总数}\quad(2)</script></li>
+<li><p>式（1）和式（2）分别是θ的单调递减函数和单调递增函数</p>
+</li>
+<li><p>阈值为θ时的等错误率EER对应于式（1）和式（2）相等时的值，即</p>
+<script type="math/tex; mode=display">
+EER=P_{fa}(θ)=P_{miss}(θ)</script></li>
+<li><p><strong>等错误率越小代表伪造语音检测系统的效果越好</strong>，但该指标未考虑伪造语音检测系统对ASV系统可靠性的影响</p>
+</li>
+</ul>
+</li>
+<li><p>串联检测代价函数（t-DCF）</p>
+<ul>
+<li><p>并非独立评估，而是反映了实际情况下伪造语音和伪造语音检测系统对ASV系统性能共同产生的影响</p>
+</li>
+<li><p>实际中ASV系统可能遇到合法用户、临时冒充的非法用户以及试图恶意操作ASV决策的攻击者，该指标综合考虑了不同情况下的误判代价</p>
+</li>
+<li><p>简要计算过程如下</p>
+<script type="math/tex; mode=display">
+min\,t-DCF=\underset{\theta}{min} \{ \beta{P_{miss}(\theta)+P_{fa}(\theta)} \}</script><ul>
+<li>系数β取决于实际中的伪造攻击优先级、误判成本以及ASV系统的检测性能（FA和FR等）</li>
+</ul>
+</li>
+<li><p><strong>t-DCF越小说明检测系统的泛化性能越好</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="3-3-针对语音合成-转换的伪造语音检测技术"><a href="#3-3-针对语音合成-转换的伪造语音检测技术" class="headerlink" title="3.3 针对语音合成/转换的伪造语音检测技术"></a>3.3 针对语音合成/转换的伪造语音检测技术</h4><ul>
+<li>早期语音合成检测方案主要考虑语音信号、声纹特征和频谱分布等生物信息的差异特征</li>
+<li>部分研究集中于声码器和自然语音之间的声学差异</li>
+<li>传统语音合成方法难以建立可靠的韵律模型，部分工作使用基频信息进行检测：<ul>
+<li>统计参数合成方法生成语音的基频F0通常过度平滑</li>
+<li>波形拼接方法生成语音的单元连接点处F0跳跃</li>
+</ul>
+</li>
+<li>基于DNN的合成语音检测系统的研究主要集中在<strong>特征提取方法</strong>，<strong>特征表示学习网络结构设计</strong>和<strong>损失函数设计</strong>三个方面。</li>
+</ul>
+<h5 id="3-3-1-前端特征提取"><a href="#3-3-1-前端特征提取" class="headerlink" title="3.3.1 前端特征提取"></a>3.3.1 前端特征提取</h5><ul>
+<li>前端工作主要研究如何提取伪造语音中可区分于真实语音的特征以输入后端进行判决（如伪造语音通常缺少频谱和时间细节信息）</li>
+<li>目前伪造语音检测的常用特征主要分为三大类：<ul>
+<li>频谱特征（最广泛）</li>
+<li>身份特征</li>
+<li>原始波形</li>
+<li><img src="/img/语音伪造及检测技术研究综述/5.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>短时功率谱特征<ul>
+<li>描述了信号功率随频率的变化情况</li>
+<li>常用的短时功率谱特征<ul>
+<li>对数功率谱</li>
+<li>基于滤波器的倒谱系数（Filter-Based Cepstral Coefficient，FBCC）：梅尔频率倒谱系数（MFCC）、矩形滤波倒谱系数（LFCC）</li>
+<li>基于全极点语音建模参数的倒谱系数：线性预测倒谱系数（LPCC）</li>
+</ul>
+</li>
+<li>由于<strong>伪造语音无法很好地模拟语音的时间特征</strong>，因此倒谱的高阶系数和一阶、二阶动态差分系数都有利于进行伪造语音检测</li>
+<li><img src="/img/语音伪造及检测技术研究综述/6.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+<li>短时幅度谱特征<ul>
+<li>对数幅度谱（Log Magnitude Spectrum，LMS）：包含语音信号的细节信息，如共振峰、基音和元音的谐波结。</li>
+<li>残差对数幅度谱（Residual Log Magnitude Spectrum，RLMS）：从线性预测编码（LPC）残差波形中提取，包含谐波等频谱细节信息</li>
+<li>与LMS相比，RLMS消除了共振峰影响。</li>
+</ul>
+</li>
+<li>短时相位特征<ul>
+<li><strong>声码器重建波形时会忽略相位信息</strong>，因此短时相位特征是检测伪造语音的有效特征之一</li>
+<li>由傅里叶变换得到的相位谱存在相位扭曲，需对其进行处理以得到稳定有效的相位特征</li>
+<li>常用的相位特征：<ul>
+<li>群延迟（Group Delay，GD）</li>
+<li>改进的群延迟（Modified Group Delay，MGD）</li>
+<li>基带相位差（Baseband Phase Difference，BPD）</li>
+<li>瞬时频率导数（Instantaneous Frequency Derivative，IF）</li>
+<li>相对相位偏移（Relative Phase Shift，RPS）</li>
+</ul>
+</li>
+<li><img src="/img/语音伪造及检测技术研究综述/7.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+<li>基于长时变换的特征<ul>
+<li>耳蜗滤波器瞬时频率倒谱系数（CFCCIF）</li>
+<li>基于长时常数Q变换的倒谱系数（CQCC）<ul>
+<li>专门为伪造语音检测工作设计的特征，基于长时窗口恒定Q变换（CQT），对LA和PA场景下不同类别的攻击均有效</li>
+<li><img src="/img/语音伪造及检测技术研究综述/8.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于子带变换的特征<ul>
+<li>伪造语音的干扰存在于语音的子带级别，只有<strong>在同频带中提取高分辨率特征</strong>才能可靠地提取这些干扰信息</li>
+<li>子带变换相比于全频带变换<strong>更可靠地捕捉伪造语音中特定频段内的精细特征</strong></li>
+<li>三种基于子带变换的特征：<ul>
+<li>恒Q等子带变换（CQ-EST)</li>
+<li>恒Q倍频程子带变换（CQ-OST）</li>
+<li>离散傅里叶梅尔子带变换（DF-MST）</li>
+</ul>
+</li>
+<li>通过静态系数、动态差分系数和加速度系数的特征组合可达到远超CQCC、MFCC特征的效果</li>
+<li><img src="/img/语音伪造及检测技术研究综述/9.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>目前工作基本采用<strong>融合多个不同前端的子系统</strong>的方法，综合不同特征的优势以达到更好检测效果</li>
+</ul>
+<h5 id="3-3-2-后端分类模型"><a href="#3-3-2-后端分类模型" class="headerlink" title="3.3.2 后端分类模型"></a>3.3.2 后端分类模型</h5><ul>
+<li>借助神经网络的特征学习能力，最新的检测系统后端<strong>对前端输入特征学习其高级特征表示后再进行分类</strong></li>
+<li>目前大多数工作针对特定攻击或基于固定数据集，单个系统无法高效地检测多种不同的伪造攻击（TTS、VC和TTS-VC混合等）和训练集中不存在的未知攻击</li>
+<li>实际中难以提前获知攻击类型，因此最新的研究重点普遍集中于<strong>提高检测的泛化性</strong>——能跨越不同伪造攻击类型并可抵抗不同通道环境噪声干扰的通用检测系统</li>
+<li>目前，基于DNN的研究工作主要包括深度神经网络结构、损失函数和深度网络训练方法</li>
+</ul>
+<ol>
+<li>深度神经网络结构<ul>
+<li>后端网络一般采用基于卷积神经网络（CNN）的架构，如<strong>轻量卷积神经网络（LCNN）</strong>、<strong>残差网络（ResNet）</strong>、<strong>挤压-激励网络（SENet）</strong>等</li>
+<li>ResNet<ul>
+<li>为解决深层网络的<u>退化</u>和<u>梯度消失</u>问题（较低层难以在训练中接受有用的更新信息）提出</li>
+<li>核心思想：使用跳过连接作为捷径，减少深层网络的训练参数，允许训练过程中参数更新更快地向较低层传播</li>
+</ul>
+</li>
+<li>LCNN<ul>
+<li>可在<u>减少计算成本和存储空间</u>的情况下<u>处理带有大量噪声标签的大规模数据</u></li>
+<li>核心：每个卷积层后引入了<strong>最大特征图（Max Feature Map，MFM）激活函数</strong></li>
+<li>相比ReLU，MFM激活后得到的特征图更紧密，同时可实现特征选择和特征降维</li>
+</ul>
+</li>
+<li>SENet<ul>
+<li>核心：通过挤压-激励操作显示<u>建模通道之间的相互依赖性</u></li>
+<li>先对特征图进行挤压操作得到通道级全局特征，再对全局特征做激励以学习各通道间关系</li>
+<li><strong>为不同通道分配不同影响权重</strong>，从而提高了模型专注于伪造检测最相关的通道信息能力</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>损失函数<ul>
+<li>常用<strong>交叉熵损失（softmax损失）</strong>或<strong>AM-softmax损失</strong></li>
+<li>主要针对现有检测系统对<u>未知数据泛化能力不佳</u>的问题进行损失设计</li>
+<li>增强边缘余弦损失函数（LMCL）<ul>
+<li>将softmax损失重整为余弦损失，迫使DNN学习可最大化类间方差并最小化类内方差的特征表示</li>
+</ul>
+</li>
+<li>OC-softmax<ul>
+<li>通过压缩真实语音的表示来区分真实与伪造语音</li>
+</ul>
+</li>
+<li>基于核密度估计（KDE）的损失函数<ul>
+<li>通过估计每个小批次内数据类的概率密度函数，计算每个小批次内所有训练类的KDE损失</li>
+</ul>
+</li>
+<li>使用概率-相似度梯度（P2SGrad）的无超参数的均方误差损失函数<ul>
+<li>通过总结比较常用的不同损失函数的性能，基于边缘的softmax对超参数设置敏感的问题提出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>深度网络训练方法<ul>
+<li>从此角度研究如何提高检测系统的泛化能力，如采用<strong>自监督学习</strong>、<strong>域自适应学习</strong>、<strong>对抗训练</strong>等</li>
+<li>基于多任务自监督学习的伪造语音检测方案SSAD<ul>
+<li>使用<u>基于时域卷积网络（TCN）的SSAD编码器</u>提取原始音频的深层表示，同时通过<u>最小化回归任务和二分类任务的损失帮助编码器获取更好的高级表示</u></li>
+<li>SSAD提取高维特征后输入LCNN-big网络进行判别</li>
+</ul>
+</li>
+<li>为解决数据集中信道不匹配的问题，提出了多任务学习和对抗训练两种网络<ul>
+<li>多任务学习网络中增加了<u>信道分类器</u></li>
+<li>对抗训练网络在前者基础上在信道分类器前添加<u>梯度反转层</u>，形成最大最小化的对抗训练，当训练稳定时，网络可学习到无关于信道影响的深度特征表示</li>
+</ul>
+</li>
+<li>使用连续学习方法训练伪造语音检测系统DFWF<ul>
+<li>可帮助减少对过去知识的遗忘</li>
+<li>同时通过在真实语音中增加额外的正样本对齐（PSA）约束，保持真实语音特征表示分布的一致性</li>
+</ul>
+</li>
+<li><img src="/img/语音伪造及检测技术研究综述/10.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ol>
+<h3 id="4-伪造语音检测竞赛"><a href="#4-伪造语音检测竞赛" class="headerlink" title="4 伪造语音检测竞赛"></a>4 伪造语音检测竞赛</h3><ul>
+<li>伪造语音检测领域内规模最大、最全面的挑战赛，是由英国爱丁堡大学、法国EURECOM、日本NEC、东芬兰大学等多个研究机构共同组织发起的两年一度的<strong>ASVspoof 挑战赛(Automatic Speaker VerificationSpoofing And Countermeasures Challenge)</strong></li>
+<li>该赛事旨在通过发布公开数据集并组织竞争性评估来促进ASV伪造语音检测技术的发展</li>
+</ul>
+<h3 id="5-相关数据集"><a href="#5-相关数据集" class="headerlink" title="5 相关数据集"></a>5 相关数据集</h3><ul>
+<li><img src="/img/语音伪造及检测技术研究综述/11.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<h4 id="5-1-ASVspoof挑战赛数据集"><a href="#5-1-ASVspoof挑战赛数据集" class="headerlink" title="5.1 ASVspoof挑战赛数据集"></a>5.1 ASVspoof挑战赛数据集</h4><ul>
+<li>ASVspoof2015数据集是第一个用于伪造和检测研究的主要数据集，仅针对LA场景，由真实语音和合成/转换语音组成</li>
+<li>ASVspoof2019有LA和PA两个子集，LA子集包含真实和合成/转换语音，PA子集包含真实和重放语音，在一个模拟且可控的声学环境中创建，以控制重放语音中的非受控音素</li>
+</ul>
+<h4 id="5-2-AVspoof数据集"><a href="#5-2-AVspoof数据集" class="headerlink" title="5.2 AVspoof数据集"></a>5.2 AVspoof数据集</h4><ul>
+<li>包含合成、转换、重放三种伪造攻击</li>
+<li>测试集中引入了未知重放攻击</li>
+</ul>
+<h3 id="6-工具资源及相关源代码"><a href="#6-工具资源及相关源代码" class="headerlink" title="6 工具资源及相关源代码"></a>6 工具资源及相关源代码</h3><ul>
+<li><img src="/img/语音伪造及检测技术研究综述/12.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li><img src="/img/语音伪造及检测技术研究综述/13.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<h3 id="7-伪造语音检测未来研究方向"><a href="#7-伪造语音检测未来研究方向" class="headerlink" title="7 伪造语音检测未来研究方向"></a>7 伪造语音检测未来研究方向</h3><ol>
+<li>高泛化性检测<ul>
+<li>依赖特定数据集或伪造方法的<u>训练数据种类单一且同分布</u>，泛化能力较弱</li>
+<li>未来应进一步探索有效的<u>多角度深度融合特征</u>以及有效的<u>集成算法</u></li>
+</ul>
+</li>
+<li>少样本检测<ul>
+<li>现有的伪造语音检测大都依赖于大规模、高质量的深度伪造数据集</li>
+<li>未来应更多地探索基于小样本的自监督学习等技术，保证检测效果的前提下，有效降低模型训练成本</li>
+</ul>
+</li>
+<li>鲁棒检测<ul>
+<li>现有的伪造语音检测方法容易在训练集上过拟合，对经过重压缩、加噪等处理后的语音检测鲁棒性较差</li>
+<li>未来应探索鲁棒的检测算法，<u>如利用对抗样本对检测模型进行对抗训练</u>，或<u>在模型建立的不同阶段，探索不同预处理方法对检测算法鲁棒性的影响</u></li>
+</ul>
+</li>
+<li>活体特征检测<ul>
+<li>现有伪造语音绝大多数没有底噪和背景杂音，但真实语音存在录音底噪、环境噪声、喷麦等</li>
+<li>未来应将上述活体特征作为辅助信息</li>
+</ul>
+</li>
+<li>多模态检测<ul>
+<li>现有的多媒体伪造视频大多通过画面和语音结合以达到更逼真的伪造效果</li>
+<li>未来应探索伪造数据的多模态检测</li>
+</ul>
+</li>
+<li>特定说话人风格检测<ul>
+<li>现有的伪造语音检测方法可以以高自然度模拟目标说话人的音色，但往往忽视了其独特灵活的口语语言特征，如口头禅、赘语、口音、发音习惯等</li>
+<li>未来应探究特定说话人的语言风格，捕捉能体现说话人个体言语特点的有效特征,以便检测音频真伪</li>
+</ul>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/" class="category-chain-item">文献笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E9%9F%B3%E9%A2%91%E5%AE%89%E5%85%A8/" class="category-chain-item">音频安全</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9F%B3%E9%A2%91%E5%AE%89%E5%85%A8/">#音频安全</a>
+      
+        <a href="/tags/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/">#文献笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>语音伪造及检测技术研究综述</div>
+      <div>http://example.com/2022/10/10/语音伪造及检测技术研究综述/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月10日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/09/%E9%9F%B3%E9%A2%91%E5%AE%89%E5%85%A8/" title="音频安全">
+                        <span class="hidden-mobile">音频安全</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"awvsokKeWRP4vII7diiB8b9q-gzGzoHsz","appKey":"DWqQoxxdtYMtEsfxzZwd5CPv","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+		<div>
+			<span id="timeDate">载入天数...</span>
+			<span id="times">载入时分秒...</span>
+			<script>
+			var now = new Date();
+			function createtime(){
+				var grt= new Date("09/08/2022 11:00:00");//此处修改你的建站时间或者网站上线时间
+				now.setTime(now.getTime()+250);
+				days = (now - grt ) / 1000 / 60 / 60 / 24;
+				dnum = Math.floor(days);
+				hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+				hnum = Math.floor(hours);
+				if(String(hnum).length ==1 ){
+					hnum = "0" + hnum;
+				}
+				minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+				mnum = Math.floor(minutes);
+				if(String(mnum).length ==1 ){
+							mnum = "0" + mnum;
+				}
+				seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+				snum = Math.round(seconds);
+				if(String(snum).length ==1 ){
+							snum = "0" + snum;
+				}
+				document.getElementById("timeDate").innerHTML = "🚀 &nbsp"+dnum+"&nbsp天";  //此次自定义显示内容
+				document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+			}  //此次自定义显示内容
+			setInterval("createtime()",250);
+			</script>
+		</div>
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
